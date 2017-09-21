@@ -1,0 +1,28 @@
+/*
+**  Loading spinner classes
+*/
+
+div.loading-spinner {
+  /* Dimensions */
+  width:  200px;
+  height: 200px;
+
+  /* Borders */
+  border: 1px solid transparent;
+
+  /* Top border */
+  border-top-color: #333;
+}
+
+/*
+**  Loading spinner keyframes
+*/
+
+@keyframes loadingspinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

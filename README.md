@@ -1,2 +1,3 @@
-# web-gungame
-Some guy on the internet thought it was a good idea, so I started working on it
+# Gun game
+
+This project still needs a proper name, that I haven't found yet.
