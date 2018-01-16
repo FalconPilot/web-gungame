@@ -1,22 +1,28 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
+# App artifacts
+/_build
+/db
+/deps
+/*.ez
+/*.DS_Store
 
-# dependencies
-/node_modules
+# Generated on crash by the VM
+erl_crash.dump
 
-# testing
-/coverage
+# Generated on crash by NPM
+npm-debug.log
 
-# production
-/build
-/public/bundle.js
+# Static artifacts
+/assets/node_modules
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Since we are building assets from assets/,
+# we ignore priv/static. You may want to comment
+# this depending on your deployment strategy.
+/priv/static/
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Files matching config/*.secret.exs pattern contain sensitive
+# data and you should not commit them into version control.
+#
+# Alternatively, you may comment the line below and commit the
+# secrets files as long as you replace their contents by environment
+# variables.
+/config/*.secret.exs
