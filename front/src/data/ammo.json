@@ -1,0 +1,9 @@
+{
+  "ffsix": {
+    "min-damage":   3,
+    "max-damage":   6,
+    "penetration":  3,
+
+    "range":  50
+  }
+}

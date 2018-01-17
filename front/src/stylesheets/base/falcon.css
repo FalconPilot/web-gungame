@@ -1,0 +1,105 @@
+/*
+**  Falcon CSS Library
+**
+**  Created by FalconPilot <https://github.com/FalconPilot>
+**
+**  I originally created this library for personal use, but if you want to
+**  import it in your project, do as you want.
+**  Since I use a lot of comments, I highly suggest using a CSS minifier
+**  to use it.
+**
+**  Licensed under MIT (see LICENSE.txt)
+*/
+
+/*
+**  Main structure
+*/
+
+/* Main body ID */
+div#root {
+  min-width:        100vw;
+  min-height:       100vh;
+
+  margin:           0;
+  padding:          0;
+
+  font-size:        12px;
+
+  display:          flex;
+  flex-direction:   column;
+  align-items:      center;
+  justify-content:  center;
+}
+
+@media(min-width: 2000px) { body#falcon-body { font-size: 24px; } }
+
+/* Common structural properties */
+header#falcon-header,
+main#falcon-container,
+footer#falcon-footer { min-width: 100%; }
+
+/* Main header ID */
+header#falcon-header {
+  padding:    1em;
+  box-sizing: border-box;
+}
+
+/* Main container ID */
+main#falcon-container {
+  flex: 1;
+}
+
+/*
+**  Flexbox classes
+*/
+
+.flex-row,
+.flex-col { display: flex; }
+
+.flex-row { flex-direction: row; }
+.flex-col { flex-direction: column; }
+
+/* Vertical and horizontal centering */
+.flex-row.center-v,
+.flex-col.center-h { align-items: center; }
+
+.flex-col.center-v,
+.flex-row.center-h { justify-content: center; }
+
+.flex-middle {
+  align-items:      center;
+  justify-content:  center;
+}
+
+/* Top/bottom, left/right alignments */
+
+.flex-row.flex-top,
+.flex-col.flex-left { align-items: flex-start; }
+
+.flex-row.flex-bottom,
+.flex-col.flex-right { align-items: flex-end; }
+
+.flex-row.flex-left,
+.flex-col.flex-top { justify-content: flex-start; }
+
+.flex-row.flex-right,
+.flex-col.flex-bottom { justify-content: flex-end; }
+
+/* HR fix */
+.flex-row > hr,
+.flex-col > hr { width: 100%; }
+
+/*
+**  Title styling classes
+*/
+
+h1.centered-title,
+h2.centered-title,
+h3.centered-title,
+h4.centered-title,
+h5.centered-title,
+h6.centered-title {
+  min-width:  100%;
+
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+/*
+**  Customizer window
+*/
+
+div.customizer-wrapper { margin: 150px auto; }
+
+div.customizer-window {
+  position: relative;
+  width: min-content;
+  margin: 0 auto;
+  padding: 20px 250px 20px 20px;
+  box-sizing: border-box;
+}
+
+/* Custom weapon widths */
+div.customizer-wrapper.ar15 { min-width: 1200px; }

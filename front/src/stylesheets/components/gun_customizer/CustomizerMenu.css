@@ -1,0 +1,24 @@
+/*
+**  Gun customizer menu CSS
+*/
+
+div.stat-wrapper { margin: 10px 20px; }
+
+div.part-choice {
+  min-width: 100px;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+
+div.part-choice.selected { background-color: #999; }
+
+div.part-choice > div > p { margin: 0; }
+div.part-choice > div > p:last-child { margin-left: auto; }
+
+div.submenu {
+  height: 0;
+  transition: 0.2s;
+  overflow: hidden;
+}

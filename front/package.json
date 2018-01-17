@@ -1,0 +1,25 @@
+{
+  "name": "gungame-front",
+  "version": "0.1.1",
+  "private": true,
+  "homepage": "http://fpilot.fr/gunbeta",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "credits": {
+    "links": {
+      "Adam/Nightwig":  "https://www.flickr.com/photos/theawesomenight",
+      "Semi":           "https://www.flickr.com/photos/75635109@N03",
+      "DrNoob":         "http://pimpmygun.doctornoob.com/",
+      "Shockwave":      "https://www.flickr.com/photos/sh0ckwave"
+    }
+  }
+}
