@@ -1,9 +1,12 @@
 {
   "main.css": "static/css/main.533be68a.css",
   "main.css.map": "static/css/main.533be68a.css.map",
-  "main.js": "static/js/main.ed0135b6.js",
-  "main.js.map": "static/js/main.ed0135b6.js.map",
+  "main.js": "static/js/main.3e7a67bf.js",
+  "main.js.map": "static/js/main.3e7a67bf.js.map",
+  "static/media/frame_1.png": "static/media/frame_1.d5d63035.png",
+  "static/media/grip_1.png": "static/media/grip_1.2298734f.png",
   "static/media/handguard_2.png": "static/media/handguard_2.dbbce3ec.png",
   "static/media/lower_receiver_2.png": "static/media/lower_receiver_2.0ab33a9c.png",
+  "static/media/magazine_1.png": "static/media/magazine_1.32fd11b4.png",
   "static/media/magazine_2.png": "static/media/magazine_2.505a3f47.png"
 }

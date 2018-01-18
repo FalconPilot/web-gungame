@@ -58,7 +58,7 @@ class CustomizerMenu extends Component {
     const caliber = this.props.gunStruct.caliber
 
     // Calculate stat total
-    const value = this.props.gunStruct.parts
+    const value = Object.values(this.props.gunStruct.parts)
       .concat([{ stats: ammo[caliber] }])
       .reduce((total, part) => {
 
@@ -92,15 +92,11 @@ class CustomizerMenu extends Component {
   renderChoices = (part, idx) => {
     const index = guns[this.props.gun].parts[this.state.selectedPart].indexOf(part)
     const sidx = guns[this.props.gun].parts[this.state.selectedPart].indexOf(
-      this.props.gunStruct.parts.filter(p => {
-        return p.key === part.key
-      })[0]
+      this.props.gunStruct.parts[part.key]
     )
 
     if (part.key === "front_sight") {
-      const rear = this.props.gunStruct.parts.filter(p => {
-        return p.key === "rear_sight"
-      })[0]
+      const rear = this.props.gunStruct.parts.rear_sight
 
       if (rear.force_front === true && part.fsight !== true) {
         return null
@@ -129,6 +125,20 @@ class CustomizerMenu extends Component {
           })
         : null
       }
+      <div className="choices-footer">
+        {part.force_front === true
+          ? <div>{"Requires a front sight"}</div>
+          : null
+        }
+        {part.allow_front === false
+          ? <div>{"Doesn't accept front sights"}</div>
+          : null
+        }
+        {part.fsight === true
+          ? <div>{"Works as a front sight"}</div>
+          : null
+        }
+      </div>
     </div>
   }
 
@@ -147,7 +157,7 @@ class CustomizerMenu extends Component {
 
     // Define excluded
     const excluded = [].concat.apply([],
-      this.props.gunStruct.parts
+      Object.values(this.props.gunStruct.parts)
         .map(part => { return part.exclude })
         .filter(exists)
     )
@@ -159,7 +169,7 @@ class CustomizerMenu extends Component {
         <option value="strykev">{"Stryke V"}</option>
       </select>
       <div className="flex-row">
-        {this.props.gunStruct.parts.sort(this.checkOrder).map(p => { return this.renderButtons(p, excluded) })}
+        {Object.values(this.props.gunStruct.parts).sort(this.checkOrder).map(p => this.renderButtons(p, excluded) )}
       </div>
       <div className="flex-row submenu" style={styles}>
         {exists(this.state.selectedPart)

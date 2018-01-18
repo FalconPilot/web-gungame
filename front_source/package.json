@@ -1,7 +1,8 @@
 {
   "name": "gungame-front",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
+  "homepage": "/gunbeta",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

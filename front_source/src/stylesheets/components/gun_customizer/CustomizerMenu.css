@@ -6,10 +6,12 @@ div.stat-wrapper { margin: 10px 20px; }
 
 div.part-choice {
   min-width: 100px;
+  height: 93px;
   padding: 10px;
   margin: 5px;
   border: 1px solid #333;
   border-radius: 3px;
+  overflow: auto;
 }
 
 div.part-choice.selected { background-color: #999; }
@@ -21,4 +23,9 @@ div.submenu {
   height: 0;
   transition: 0.2s;
   overflow: hidden;
+}
+
+div.choices-footer {
+  margin-top: auto;
+  font-style: italic;
 }

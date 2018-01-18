@@ -14,8 +14,10 @@ import ST2 from '../../images/guns/ar15/stock/stock_2.png'
 
 // Rear sights
 import RS1 from '../../images/guns/ar15/rear_sight/rear_sight_1.png'
-import RS2 from '../../images/guns/ar15/rear_sight/rear_sight_2.png'
-import RS3 from '../../images/guns/ar15/rear_sight/rear_sight_3.png'
+
+// Universal optics
+import OP1 from '../../images/accessories/optic/rds_1.png'
+import OP2 from '../../images/accessories/optic/rds_2.png'
 
 // Front sights
 import FS1 from '../../images/guns/ar15/front_sight/front_sight_1.png'
@@ -24,6 +26,7 @@ import FS2 from '../../images/guns/ar15/front_sight/front_sight_2.png'
 // Handguards
 import HG1 from '../../images/guns/ar15/handguard/handguard_1.png'
 import HG2 from '../../images/guns/ar15/handguard/handguard_2.png'
+import HG3 from '../../images/guns/ar15/handguard/handguard_3.png'
 
 // Trigger guards
 import TG1 from '../../images/guns/ar15/trigger_guard/trigger_guard_1.png'
@@ -448,28 +451,49 @@ export const ar15 = {
     // Handguards
     handguard: [
       baseObject(defaultProperties.handguard, {
-        name:             "Classic handguard",
-        author:           "Skipper Lee",
-        width:            169,
-        height:           58,
-        image:            HG1,
+        name:       "Classic handguard",
+        author:     "Skipper Lee",
+        width:      169,
+        height:     58,
+        image:      HG1,
+        gb_offset:  1,
         exclude: [
           "accessory_top",
           "accessory_bottom",
           "accessory_side"
         ],
-        gb_offset:        1,
         stats: {
           handling: 1
         }
       }),
       baseObject(defaultProperties.handguard, {
-        name:             "Standard RIS",
-        author:           "Skipper Lee",
-        width:            173,
-        height:           58,
-        image:            HG2,
-        gb_offset:        1,
+        name:       "Standard RIS",
+        author:     "Skipper Lee",
+        width:      173,
+        height:     58,
+        image:      HG2,
+        gb_offset:  1,
+      }),
+      baseObject(defaultProperties.handguard, {
+        name:         "Lightweight handguard",
+        author:       "Shockwave",
+        width:        338,
+        height:       63,
+        image:        HG3,
+        gb_offset:    70,
+        allow_front:  false,
+        exclude: [
+          "accessory_side",
+          "accessory_bottom"
+        ],
+        offsets: {
+          bottom: -5,
+          left:   -1
+        },
+        stats: {
+          handling: 2,
+          accuracy: -1
+        }
       })
     ],
 
@@ -543,10 +567,11 @@ export const ar15 = {
       baseObject(defaultProperties.rear_sight, {
         name:         "Reflex RDS",
         author:       "Shockwave",
+        allow_front:  true,
+        force_front:  false,
         width:        113,
         height:       70,
-        image:        RS2,
-        allow_front:  true,
+        image:        OP1,
         stats: {
           accuracy: 2
         },
@@ -557,9 +582,11 @@ export const ar15 = {
       baseObject(defaultProperties.rear_sight, {
         name:         "Low-profile RDS",
         author:       "Shockwave",
+        allow_front:  false,
+        force_front:  false,
         width:        51,
         height:       46,
-        image:        RS3,
+        image:        OP2,
         stats: {
           accuracy: 1,
           handling: 1

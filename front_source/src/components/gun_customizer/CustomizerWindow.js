@@ -15,7 +15,7 @@ class CustomizerWindow extends Component {
     this.state = {
       currentGun: props.gun,
       parts: parts,
-      mainPart: parts.filter(part => { return part.main === true })[0],
+      mainPart: Object.values(parts).filter(part => { return part.main === true })[0],
       caliber: guns[this.props.gun].caliber,
       transaction: null
     }
@@ -35,7 +35,7 @@ class CustomizerWindow extends Component {
       await this.setState({
         currentGun: newProps.gun,
         parts: parts,
-        mainPart: parts.filter(part => { return part.main === true })[0],
+        mainPart: Object.values(parts).filter(part => { return part.main === true })[0],
         caliber: guns[this.props.gun].caliber
       }, () => { this.props.updateGun(this.state) })
     }
@@ -43,9 +43,8 @@ class CustomizerWindow extends Component {
     // Patch transactions
     if (exists(newProps.transaction)) {
       const nextPart = guns[this.props.gun].parts[newProps.transaction.key][newProps.transaction.index]
-      const newParts = this.state.parts
-        .filter(part => { return part.key !== newProps.transaction.key })
-        .concat([nextPart])
+      const newParts = Object.assign({}, this.state.parts)
+      newParts[newProps.transaction.key] = nextPart
 
       const newMain = nextPart.main === true
         ? nextPart
@@ -55,17 +54,15 @@ class CustomizerWindow extends Component {
       this.setState({
         parts: newParts,
         mainPart: newMain
-      }, () => {
-        this.props.updateGun(this.state)
-      })
+      }, () => { this.props.updateGun(this.state) })
     }
   }
 
   // Get default parts
   getDefaultParts(key) {
-    return Object.values(guns[key].parts).map(list => {
-      return list[0]
-    })
+    return Object.values(guns[key].parts).reduce((acc, list) => {
+      return Object.assign(acc, {[list[0].key]: list[0]})
+    }, {})
   }
 
   // Merge part offsets
@@ -96,8 +93,8 @@ class CustomizerWindow extends Component {
 
     // Aliases
     const snaps = this.state.mainPart.snap
-    const barrel = this.state.parts.filter(p => { return p.key === "barrel" })[0]
-    const hgbase = this.state.parts.filter(p => { return p.key === "handguard" })[0]
+    const barrel = this.state.parts.barrel
+    const hgbase = this.state.parts.handguard
 
     // Compute gas block offset
     const gbOffset = part.key === "front_sight"
@@ -153,7 +150,7 @@ class CustomizerWindow extends Component {
   render() {
     return <div className={`customizer-wrapper ${this.props.gun}`}>
       <div className="customizer-window">
-        {this.state.parts.map(this.renderPart)}
+        {Object.values(this.state.parts).map(this.renderPart)}
       </div>
     </div>
   }
