@@ -1,8 +1,10 @@
 import { ar15 } from './weapons/ar15.js'
-import { ffsix } from './ammo.json'
+import { strykev } from './weapons/strykev.js'
+import { ffsix, ninemm } from './ammo.json'
 
 export const guns = {
-  "ar15": ar15
+  "ar15":     ar15,
+  "strykev":  strykev
 }
 
 export const stats = {
@@ -30,5 +32,6 @@ export const stats = {
 }
 
 export const ammo = {
-  "5.56x45mm": ffsix
+  "5.56x45mm":  ffsix,
+  "9x19mm":     ninemm
 }

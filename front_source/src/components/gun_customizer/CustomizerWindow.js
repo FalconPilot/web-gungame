@@ -11,8 +11,9 @@ class CustomizerWindow extends Component {
   constructor(props) {
     super(props)
 
-    const parts = this.getDefaultParts()
+    const parts = this.getDefaultParts(props.gun)
     this.state = {
+      currentGun: props.gun,
       parts: parts,
       mainPart: parts.filter(part => { return part.main === true })[0],
       caliber: guns[this.props.gun].caliber,
@@ -26,7 +27,20 @@ class CustomizerWindow extends Component {
   }
 
   // Patch state
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps = async(newProps) => {
+
+    // Update state when gun is overriden
+    if (newProps.gun !== this.state.currentGun) {
+      const parts = this.getDefaultParts(newProps.gun)
+      await this.setState({
+        currentGun: newProps.gun,
+        parts: parts,
+        mainPart: parts.filter(part => { return part.main === true })[0],
+        caliber: guns[this.props.gun].caliber
+      }, () => { this.props.updateGun(this.state) })
+    }
+
+    // Patch transactions
     if (exists(newProps.transaction)) {
       const nextPart = guns[this.props.gun].parts[newProps.transaction.key][newProps.transaction.index]
       const newParts = this.state.parts
@@ -48,8 +62,8 @@ class CustomizerWindow extends Component {
   }
 
   // Get default parts
-  getDefaultParts() {
-    return Object.values(guns[this.props.gun].parts).map(list => {
+  getDefaultParts(key) {
+    return Object.values(guns[key].parts).map(list => {
       return list[0]
     })
   }

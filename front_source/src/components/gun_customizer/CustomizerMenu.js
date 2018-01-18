@@ -13,8 +13,20 @@ class CustomizerMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      currentGun: props.gun,
       selectedPart: null,
       openMenu: false
+    }
+  }
+
+  // Receive props
+  componentWillReceiveProps(newProps) {
+    if (newProps.gun !== this.state.currentGun) {
+      this.setState({
+        currentGun: newProps.gun,
+        selectedPart: null,
+        openMenu: false
+      })
     }
   }
 
@@ -66,22 +78,14 @@ class CustomizerMenu extends Component {
   }
 
   // Render buttons
-  renderButtons = (part) => {
-    if (part.key.split('_')[0] === "accessory") {
-      const handguard = this.props.gunStruct.parts.filter(p => {
-        return p.key === "handguard"
-      })[0]
-
-      if (handguard[part.key] !== true) {
-        return null
-      }
-    }
-
-    return <button
-      key={`open-${part.key}`}
-      value={part.key}
-      onClick={this.switchPart}
-    >{part.display}</button>
+  renderButtons = (part, excluded) => {
+    return excluded.includes(part.key)
+      ? null
+      : <button
+          key={`open-${part.key}`}
+          value={part.key}
+          onClick={this.switchPart}
+        >{part.display}</button>
   }
 
   // Render part choices
@@ -141,9 +145,21 @@ class CustomizerMenu extends Component {
       ? { height: "125px" }
       : null
 
+    // Define excluded
+    const excluded = [].concat.apply([],
+      this.props.gunStruct.parts
+        .map(part => { return part.exclude })
+        .filter(exists)
+    )
+
+    // Render view
     return <div className="flex-col">
+      <select onChange={this.props.switchGun} value={this.props.gun}>
+        <option value="ar15">{"AR-15"}</option>
+        <option value="strykev">{"Stryke V"}</option>
+      </select>
       <div className="flex-row">
-        {this.props.gunStruct.parts.sort(this.checkOrder).map(this.renderButtons)}
+        {this.props.gunStruct.parts.sort(this.checkOrder).map(p => { return this.renderButtons(p, excluded) })}
       </div>
       <div className="flex-row submenu" style={styles}>
         {exists(this.state.selectedPart)

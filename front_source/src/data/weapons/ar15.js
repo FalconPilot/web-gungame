@@ -1,3 +1,6 @@
+// Import helper functions
+import { baseObject } from '../../helpers/common'
+
 // Lower receivers
 import LR1 from '../../images/guns/ar15/lower_receiver/lower_receiver_1.png'
 import LR2 from '../../images/guns/ar15/lower_receiver/lower_receiver_2.png'
@@ -164,10 +167,10 @@ const defaultProperties = {
     order:    16,
     zIndex:   85
   }
-},
+}
 
 // Base snapping points offsets
-baseSnap = {
+const baseSnap = {
 
   magazine: {
     top:  23,
@@ -233,10 +236,6 @@ baseSnap = {
   }
 }
 
-function baseObject(base, obj) {
-  return Object.assign(Object.assign({}, base), obj)
-}
-
 // Gun data structure
 export const ar15 = {
   name:           "AR-15",
@@ -250,7 +249,7 @@ export const ar15 = {
     lower_receiver: [
       baseObject(defaultProperties.lower_receiver, {
         name:   "Classic lower",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  200,
         height: 100,
         image:  LR1,
@@ -304,7 +303,7 @@ export const ar15 = {
     upper_receiver: [
       baseObject(defaultProperties.upper_receiver, {
         name:   "Classic upper",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  196,
         height: 46,
         image:  UR1
@@ -315,7 +314,7 @@ export const ar15 = {
     magazine: [
       baseObject(defaultProperties.magazine, {
         name:   "20rds Stanag",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  65,
         height: 129,
         image:  MAG1,
@@ -327,7 +326,7 @@ export const ar15 = {
 
       baseObject(defaultProperties.magazine, {
         name:   "30rds Stanag",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  86,
         height: 184,
         image:  MAG2,
@@ -341,7 +340,7 @@ export const ar15 = {
     grip: [
       baseObject(defaultProperties.grip, {
         name:   "Classic grip",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  87,
         height: 100,
         image:  GRIP1,
@@ -380,7 +379,7 @@ export const ar15 = {
     stock: [
       baseObject(defaultProperties.stock, {
         name:   "Standard stock",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  248,
         height: 119,
         image:  ST1,
@@ -390,7 +389,7 @@ export const ar15 = {
       }),
       baseObject(defaultProperties.stock, {
         name:   "Fixed stock",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  272,
         height: 133,
         image:  ST2,
@@ -409,7 +408,7 @@ export const ar15 = {
     barrel: [
       baseObject(defaultProperties.barrel, {
         name:           "16\" Barrel",
-        author:         "DrNoob",
+        author:         "Skipper Lee",
         width:          354,
         height:         26,
         image:          BAR1,
@@ -421,7 +420,7 @@ export const ar15 = {
       }),
       baseObject(defaultProperties.barrel, {
         name:           "20\" Barrel",
-        author:         "DrNoob",
+        author:         "Skipper Lee",
         width:          432,
         height:         26,
         image:          BAR2,
@@ -439,7 +438,7 @@ export const ar15 = {
     muzzle: [
       baseObject(defaultProperties.muzzle, {
         name:   "Birdcage flash hider",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  38,
         height: 18,
         image:  MUZ1
@@ -450,13 +449,15 @@ export const ar15 = {
     handguard: [
       baseObject(defaultProperties.handguard, {
         name:             "Classic handguard",
-        author:           "DrNoob",
+        author:           "Skipper Lee",
         width:            169,
         height:           58,
         image:            HG1,
-        accessory_side:   false,
-        accessory_bottom: false,
-        accessory_top:    false,
+        exclude: [
+          "accessory_top",
+          "accessory_bottom",
+          "accessory_side"
+        ],
         gb_offset:        1,
         stats: {
           handling: 1
@@ -464,13 +465,10 @@ export const ar15 = {
       }),
       baseObject(defaultProperties.handguard, {
         name:             "Standard RIS",
-        author:           "DrNoob",
+        author:           "Skipper Lee",
         width:            173,
         height:           58,
         image:            HG2,
-        accessory_side:   true,
-        accessory_bottom: true,
-        accessory_top:    true,
         gb_offset:        1,
       })
     ],
@@ -479,7 +477,7 @@ export const ar15 = {
     bolt: [
       baseObject(defaultProperties.bolt, {
         name:   "Classic bolt",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  177,
         height: 36,
         image:  BOLT1
@@ -490,7 +488,7 @@ export const ar15 = {
     front_sight: [
       baseObject(defaultProperties.front_sight, {
         name:   "Front-sight gas block",
-        author: "DrNoob",
+        author: "Skipper Lee",
         fsight: true,
         width:  62,
         height: 104,
@@ -498,7 +496,7 @@ export const ar15 = {
       }),
       baseObject(defaultProperties.front_sight, {
         name:   "Standard gas block",
-        author: "DrNoob",
+        author: "Skipper Lee",
         fsight: false,
         width:  27,
         height: 46,
@@ -524,7 +522,7 @@ export const ar15 = {
     trigger_guard: [
       baseObject(defaultProperties.trigger_guard, {
         name:   "Standard trigger guard",
-        author: "DrNoob",
+        author: "Skipper Lee",
         width:  36,
         height: 5,
         image:  TG1
@@ -535,7 +533,7 @@ export const ar15 = {
     rear_sight: [
       baseObject(defaultProperties.rear_sight, {
         name:         "Carrying handle",
-        author:       "DrNoob",
+        author:       "Skipper Lee",
         allow_front:  true,
         force_front:  true,
         width:        185,

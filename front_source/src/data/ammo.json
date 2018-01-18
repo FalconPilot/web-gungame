@@ -3,7 +3,13 @@
     "min-damage":   3,
     "max-damage":   6,
     "penetration":  3,
+    "range":        50
+  },
 
-    "range":  50
+  "ninemm": {
+    "min-damage":   2,
+    "max-damage":   4,
+    "penetration":  1,
+    "range":        25
   }
 }

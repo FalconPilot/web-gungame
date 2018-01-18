@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { guns } from '../../data/constants'
+import { exists } from '../../helpers/common'
 
 import CustomizerMenu from '../gun_customizer/CustomizerMenu'
 import CustomizerWindow from '../gun_customizer/CustomizerWindow'
@@ -11,7 +12,7 @@ class CustomizerViewport extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentGun: 'ar15',
+      currentGun: 'strykev',
       gunStruct: {
         parts: [],
         mainPart: {},
@@ -29,6 +30,7 @@ class CustomizerViewport extends Component {
         gun={this.state.currentGun}
         gunStruct={this.state.gunStruct}
         patchPart={this.patchPart}
+        switchGun={this.switchGun}
       />
       <CustomizerWindow
         gun={this.state.currentGun}
@@ -39,6 +41,11 @@ class CustomizerViewport extends Component {
     </div>
   }
 
+  // Change selected gun
+  switchGun = (event) => {
+    this.setState({ currentGun: event.target.value })
+  }
+
   // Update gun
   updateGun = (struct) => {
     this.setState({ gunStruct: struct })
@@ -46,6 +53,7 @@ class CustomizerViewport extends Component {
 
   // Patch part
   patchPart = (key, index) => {
+    const part = guns[this.state.currentGun].parts[key][index]
 
     this.setState({ transaction: {
       key: key,
@@ -53,9 +61,8 @@ class CustomizerViewport extends Component {
     }}, () => {
       if (key === "rear_sight" || key === "front_sight") {
         this.sightTransactions(index)
-      } else if (key === "handguard") {
-        const handguard = guns[this.state.currentGun].parts.handguard[index]
-        this.accessoryTransaction(handguard, "top", ["side", "bottom"])
+      } else if (exists(part.exclude)) {
+        this.excludeTransaction(part, part.exclude[0], part.exclude.slice(1))
       } else {
         this.setState({ transaction: null })
       }
@@ -103,32 +110,18 @@ class CustomizerViewport extends Component {
     }
   }
 
-  // Accessories transactions
-  accessoryTransaction(handguard, pos, list) {
-
-    // Define accessory
-    const accessory = this.state.gunStruct.parts.filter(part => {
-      return part.key === "accessory_" + pos
-    })[0]
-
-    if (handguard["accessory_" + pos] !== true && guns[this.state.currentGun].parts["accessory_" + pos].indexOf(accessory) !== 0) {
-      this.setState({ transaction: {
-        key: "accessory_" + pos,
-        index: 0
-      }}, () => {
-        if (list.length > 0) {
-          const head = list.shift()
-          this.accessoryTransaction(handguard, head, list)
-        } else {
-          this.setState({ transaction: null })
-        }
-      })
-    } else if (list.length > 0) {
-      const head = list.shift()
-      this.accessoryTransaction(handguard, head, list)
-    } else {
-      this.setState({ transaction: null })
-    }
+  // Exclusion transaction
+  excludeTransaction(part, head, tail) {
+    this.setState({ transaction: {
+      key: head,
+      index: 0
+    }}, () => {
+      if (tail.length > 0) {
+        this.excludeTransaction(part, tail[0], tail.slice(1))
+      } else {
+        this.setState({ transaction: null })
+      }
+    })
   }
 }
 

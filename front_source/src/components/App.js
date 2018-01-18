@@ -72,6 +72,7 @@ class App extends Component {
       <h2>{"Here's the credit list for part builders. Thanks a lot to them !"}</h2>
       {Object.entries(guns).map(([gun, data]) => {
         return <div className="flex-col" key={`credit-${gun}`}>
+          <h2>{data.name}</h2>
           {Object.entries(data.parts).map(this.renderCredit)}
         </div>
       })}
