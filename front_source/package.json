@@ -6,7 +6,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,11 +16,11 @@
   },
   "credits": {
     "links": {
-      "Adam/Nightwig":  "https://www.flickr.com/photos/theawesomenight",
-      "Semi":           "https://www.flickr.com/photos/75635109@N03",
-      "Skipper Lee":    "https://skipperlee.deviantart.com/",
-      "Shockwave":      "https://www.flickr.com/photos/sh0ckwave",
-      "Lularros":       "https://www.flickr.com/photos/150509095@N08/"
+      "Adam/Nightwig": "https://www.flickr.com/photos/theawesomenight",
+      "Semi": "https://www.flickr.com/photos/75635109@N03",
+      "Skipper Lee": "https://skipperlee.deviantart.com/",
+      "Shockwave": "https://www.flickr.com/photos/sh0ckwave",
+      "Lularros": "https://www.flickr.com/photos/150509095@N08/"
     }
   }
 }
