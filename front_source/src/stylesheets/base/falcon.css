@@ -85,6 +85,9 @@ main#falcon-container {
 .flex-row.flex-right,
 .flex-col.flex-bottom { justify-content: flex-end; }
 
+.flex-row.flex-wrap,
+.flex-col.flex-wrap { flex-wrap: wrap; }
+
 /* HR fix */
 .flex-row > hr,
 .flex-col > hr { width: 100%; }

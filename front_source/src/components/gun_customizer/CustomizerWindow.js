@@ -97,21 +97,22 @@ class CustomizerWindow extends Component {
     const hgbase = this.state.parts.handguard
 
     // Compute gas block offset
-    const gbOffset = part.key === "front_sight"
+    const gbOffset = part.key === "front_sight" || part.key === "gas_tube"
       ? hgbase.width + snaps.handguard.left - hgbase.gb_offset
-      : (exists(snaps[part.key])
-        ? snaps[part.key].left
-        : 0
-      )
+      : 0
 
     // Compute muzzle offset
     const muzzleOffset = part.key === "muzzle"
       ? barrel.width + snaps.barrel.left - barrel.muzzle_offset
-      : (exists(snaps[part.key])
-        ? gbOffset
-        : 0
-      )
+      : 0
 
+    // Compute final offset
+    const finalOffset = ["front_sight", "gas_tube", "muzzle"].includes(part.key)
+      ? (exists(snaps[part.key]) && exists(snaps[part.key].left)
+        ? snaps[part.key].left + gbOffset + muzzleOffset
+        : gbOffset + muzzleOffset
+      )
+      : (exists(snaps[part.key]) ? snaps[part.key].left : null)
 
     // Define raw offsets
     const rawOffsets = !exists(snaps[part.key])
@@ -119,7 +120,7 @@ class CustomizerWindow extends Component {
       : {
           top:    snaps[part.key].top + paddings.top,
           bottom: snaps[part.key].bottom + paddings.bottom,
-          left:   muzzleOffset + paddings.left,
+          left:   finalOffset + paddings.left,
           right:  snaps[part.key].right + paddings.right
         }
 

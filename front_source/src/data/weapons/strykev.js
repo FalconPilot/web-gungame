@@ -16,9 +16,6 @@ import MAG1 from '../../images/guns/strykev/magazine/magazine_1.png'
 // Grip panels
 import GRIP1 from '../../images/guns/strykev/grip/grip_1.png'
 
-// Optics
-import OP1 from '../../images/accessories/optic/rds_2.png'
-
 // Define default properties for different parts
 const defaultProperties = {
   frame: {
@@ -167,21 +164,6 @@ export const strykev = {
         image:  GRIP1,
         stats: {
           handling: 1
-        }
-      })
-    ],
-
-    // Rear sights
-    rear_sight: [
-      baseObject(defaultProperties.rear_sight, {
-        name:   "Micro RDS",
-        author: "Shockwave",
-        width:  51,
-        height: 46,
-        image:  OP1,
-        stats: {
-          accuracy: 2,
-          handling: -1
         }
       })
     ]

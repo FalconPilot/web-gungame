@@ -6,6 +6,8 @@ import { exists } from '../../helpers/common'
 import CustomizerMenu from '../gun_customizer/CustomizerMenu'
 import CustomizerWindow from '../gun_customizer/CustomizerWindow'
 
+import '../../stylesheets/components/gun_customizer/CustomizerViewport.css'
+
 class CustomizerViewport extends Component {
 
   // Class constructor
@@ -60,8 +62,14 @@ class CustomizerViewport extends Component {
       index: index
     }}, () => {
 
+      // Check if gas tube needs a transaction
+      if (part.key === "handguard") {
+        const calc = part.width - part.gb_offset
+        console.log(calc)
+        this.setState({ transaction: null })
+
       // Check if a sight transaction is required
-      if (exists(part.allow_front) || exists(part.force_front) || exists(part.fsight)) {
+      } else if (exists(part.allow_front) || exists(part.force_front) || exists(part.fsight)) {
         const rear = key === "rear_sight"
           ? part
           : this.state.gunStruct.parts.rear_sight
@@ -72,7 +80,7 @@ class CustomizerViewport extends Component {
 
         // Define anyAllow
         const anyAllow = Object.values(this.state.gunStruct.parts)
-          .filter(p => p.allow_front === false )
+          .filter(p => p.allow_front === false)
 
         this.sightTransactions(part, rear, front, anyAllow)
 

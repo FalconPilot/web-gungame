@@ -11,6 +11,8 @@ import UR1 from '../../images/guns/ar15/upper_receiver/upper_receiver_1.png'
 // Stocks
 import ST1 from '../../images/guns/ar15/stock/stock_1.png'
 import ST2 from '../../images/guns/ar15/stock/stock_2.png'
+import ST3 from '../../images/guns/ar15/stock/stock_3.png'
+import ST4 from '../../images/guns/ar15/stock/stock_4.png'
 
 // Rear sights
 import RS1 from '../../images/guns/ar15/rear_sight/rear_sight_1.png'
@@ -27,6 +29,7 @@ import FS2 from '../../images/guns/ar15/front_sight/front_sight_2.png'
 import HG1 from '../../images/guns/ar15/handguard/handguard_1.png'
 import HG2 from '../../images/guns/ar15/handguard/handguard_2.png'
 import HG3 from '../../images/guns/ar15/handguard/handguard_3.png'
+import HG4 from '../../images/guns/ar15/handguard/handguard_4.png'
 
 // Trigger guards
 import TG1 from '../../images/guns/ar15/trigger_guard/trigger_guard_1.png'
@@ -45,6 +48,9 @@ import TRG1 from '../../images/guns/ar15/trigger_group/trigger_group_1.png'
 // Muzzles
 import MUZ1 from '../../images/guns/ar15/muzzle/muzzle_1.png'
 
+// Silencers
+import SIL1 from '../../images/accessories/silencer/silencer_1.png'
+
 // Pistol grips
 import GRIP1 from '../../images/guns/ar15/grip/grip_1.png'
 import GRIP2 from '../../images/guns/ar15/grip/grip_2.png'
@@ -53,8 +59,20 @@ import GRIP3 from '../../images/guns/ar15/grip/grip_3.png'
 // Bolts
 import BOLT1 from '../../images/guns/ar15/bolt/bolt_1.png'
 
+// Gas tubes
+import GAS1 from '../../images/guns/ar15/gas_tube/gas_tube_1.png'
+import GAS2 from '../../images/guns/ar15/gas_tube/gas_tube_2.png'
+
 // Bottom accessories
-import AB1 from '../../images/guns/ar15/accessory_bottom/accessory_bottom_1.png'
+import AB1 from '../../images/accessories/bottom_grip/forward_grip_1.png'
+import AB2 from '../../images/accessories/grenade_launcher/M203_short.png'
+
+// Import GUI images
+import GUI_LR from '../../images/guns/ar15/GUI/lower_receiver.png'
+import GUI_UR from '../../images/guns/ar15/GUI/upper_receiver.png'
+import GUI_ST from '../../images/guns/ar15/GUI/stock.png'
+import GUI_MAG from '../../images/guns/ar15/GUI/magazine.png'
+import GUI_GRIP from '../../images/guns/ar15/GUI/grip.png'
 
 // Define default properties for different parts
 const defaultProperties = {
@@ -63,35 +81,40 @@ const defaultProperties = {
     display:  "Lower receiver",
     order:    1,
     zIndex:   50,
-    main:     true
+    main:     true,
+    gui:      GUI_LR
   },
 
   upper_receiver: {
     key:      "upper_receiver",
     display:  "Upper receiver",
     order:    2,
-    zIndex:   60
+    zIndex:   60,
+    gui:      GUI_UR
   },
 
   magazine: {
     key:      "magazine",
     display:  "Magazine",
     order:    3,
-    zIndex:   10
+    zIndex:   10,
+    gui:      GUI_MAG
   },
 
   grip: {
     key:      "grip",
     display:  "Pistol grip",
     order:    4,
-    zIndex:   55
+    zIndex:   55,
+    gui:      GUI_GRIP
   },
 
   stock: {
     key:      "stock",
     display:  "Stock",
     order:    5,
-    zIndex:   45
+    zIndex:   45,
+    gui:      GUI_ST
   },
 
   barrel: {
@@ -150,24 +173,31 @@ const defaultProperties = {
     zIndex:   62
   },
 
+  gas_tube: {
+    key:      "gas_tube",
+    name:     "Gas tube",
+    order:    14,
+    zIndex:   3
+  },
+
   accessory_top: {
     key:      "accessory_top",
     display:  "Top accessory",
-    order:    14,
+    order:    15,
     zIndex:   80
   },
 
   accessory_side: {
     key:      "accessory_side",
     display:  "Side accessory",
-    order:    15,
+    order:    16,
     zIndex:   90
   },
 
   accessory_bottom: {
     key:      "accessory_bottom",
     display:  "Bottom accessory",
-    order:    16,
+    order:    17,
     zIndex:   85
   }
 }
@@ -231,6 +261,11 @@ const baseSnap = {
   rear_sight: {
     bottom: 106,
     left:   15
+  },
+
+  gas_tube: {
+    bottom: 99,
+    left:   -200
   },
 
   accessory_bottom: {
@@ -385,10 +420,7 @@ export const ar15 = {
         author: "Skipper Lee",
         width:  248,
         height: 119,
-        image:  ST1,
-        stats: {
-          handling: 1
-        }
+        image:  ST1
       }),
       baseObject(defaultProperties.stock, {
         name:   "Fixed stock",
@@ -403,6 +435,33 @@ export const ar15 = {
         offsets: {
           top:    2,
           right:  18
+        }
+      }),
+      baseObject(defaultProperties.stock, {
+        name:   "Commando stock",
+        author: "Shockwave",
+        width:  230,
+        height: 132,
+        image:  ST3,
+        stats: {
+          handling: 1
+        },
+        offsets: {
+          top:    -1,
+          right:  5
+        }
+      }),
+      baseObject(defaultProperties.stock, {
+        name:   "Modular stock",
+        author: "EagleMalkiavan",
+        width:  232,
+        height: 103,
+        image:  ST4,
+        stats: {
+          accuracy: 1
+        },
+        offsets: {
+          right: 13
         }
       })
     ],
@@ -445,6 +504,20 @@ export const ar15 = {
         width:  38,
         height: 18,
         image:  MUZ1
+      }),
+      baseObject(defaultProperties.muzzle, {
+        name:   "GCA SKA Silencer",
+        author: "FalconPilot",
+        width:  200,
+        height: 38,
+        image:  SIL1,
+        stats: {
+          "max-damage": -1,
+          handling:     -1
+        },
+        offsets: {
+          top: -10
+        }
       })
     ],
 
@@ -456,6 +529,7 @@ export const ar15 = {
         width:      169,
         height:     58,
         image:      HG1,
+        gtube:      0,
         gb_offset:  1,
         exclude: [
           "accessory_top",
@@ -469,6 +543,7 @@ export const ar15 = {
       baseObject(defaultProperties.handguard, {
         name:       "Standard RIS",
         author:     "Skipper Lee",
+        gtube:      0,
         width:      173,
         height:     58,
         image:      HG2,
@@ -477,6 +552,7 @@ export const ar15 = {
       baseObject(defaultProperties.handguard, {
         name:         "Lightweight handguard",
         author:       "Shockwave",
+        gtube:        0,
         width:        338,
         height:       63,
         image:        HG3,
@@ -493,6 +569,22 @@ export const ar15 = {
         stats: {
           handling: 2,
           accuracy: -1
+        }
+      }),
+      baseObject(defaultProperties.handguard, {
+        name:         "Skeletonized RIS",
+        author:       "Shockwave",
+        gtube:        0,
+        width:        230,
+        height:       57,
+        image:        HG4,
+        gb_offset:    12,
+        allow_front:  true,
+        stats: {
+          handling: 1
+        },
+        offsets: {
+          left: -1
         }
       })
     ],
@@ -597,6 +689,26 @@ export const ar15 = {
       })
     ],
 
+    // Gas tube
+    gas_tube: [
+      baseObject(defaultProperties.gas_tube, {
+        name:   "Standard tube",
+        author: "Skipper Lee",
+        length: "short",
+        width:  209,
+        height: 8,
+        image:  GAS1
+      }),
+      baseObject(defaultProperties.gas_tube, {
+        name:   "Long tube",
+        author: "Skipper Lee",
+        length: "long",
+        width:  309,
+        height: 8,
+        image:  GAS2
+      })
+    ],
+
     // Top accessories
     accessory_top: [
       baseObject(defaultProperties.accessory_top, {
@@ -622,8 +734,25 @@ export const ar15 = {
         width:  57,
         height: 117,
         image:  AB1,
+        stats: {
+          handling: 1
+        },
         offsets: {
           left: 75
+        }
+      }),
+      baseObject(defaultProperties.accessory_bottom, {
+        name:   "M203 short",
+        author: "Skipper Lee",
+        width:  299,
+        height: 76,
+        image:  AB2,
+        stats: {
+          handling: -2
+        },
+        offsets: {
+          top:  -4,
+
         }
       })
     ]
