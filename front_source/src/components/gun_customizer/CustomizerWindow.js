@@ -92,9 +92,10 @@ class CustomizerWindow extends Component {
     }
 
     // Aliases
-    const snaps = this.state.mainPart.snap
-    const barrel = this.state.parts.barrel
-    const hgbase = this.state.parts.handguard
+    const snaps =   this.state.mainPart.snap
+    const barrel =  this.state.parts.barrel
+    const slide =   this.state.parts.slide
+    const hgbase =  this.state.parts.handguard
 
     // Compute gas block offset
     const gbOffset = part.key === "front_sight" || part.key === "gas_tube"
@@ -106,11 +107,16 @@ class CustomizerWindow extends Component {
       ? barrel.width + snaps.barrel.left - barrel.muzzle_offset
       : 0
 
+    // Compute recoil spring offset
+    const springOffset = part.key === "recoil_spring"
+      ? slide.width + snaps.slide.left + part.rsOffset - part.width
+      : 0
+
     // Compute final offset
-    const finalOffset = ["front_sight", "gas_tube", "muzzle"].includes(part.key)
+    const finalOffset = ["front_sight", "gas_tube", "muzzle", "recoil_spring"].includes(part.key)
       ? (exists(snaps[part.key]) && exists(snaps[part.key].left)
-        ? snaps[part.key].left + gbOffset + muzzleOffset
-        : gbOffset + muzzleOffset
+        ? snaps[part.key].left + gbOffset + muzzleOffset + springOffset
+        : gbOffset + muzzleOffset + springOffset
       )
       : (exists(snaps[part.key]) ? snaps[part.key].left : null)
 

@@ -1,13 +1,17 @@
 {
-  "main.css": "static/css/main.77153cf7.css",
-  "main.css.map": "static/css/main.77153cf7.css.map",
-  "main.js": "static/js/main.0c324ffa.js",
-  "main.js.map": "static/js/main.0c324ffa.js.map",
-  "static/media/frame_1.png": "static/media/frame_1.d5d63035.png",
-  "static/media/grip_1.png": "static/media/grip_1.2298734f.png",
+  "main.css": "static/css/main.236d6094.css",
+  "main.css.map": "static/css/main.236d6094.css.map",
+  "main.js": "static/js/main.4a01062b.js",
+  "main.js.map": "static/js/main.4a01062b.js.map",
+  "static/media/M203_short.png": "static/media/M203_short.41e515ad.png",
+  "static/media/frame_1.png": "static/media/frame_1.7a986aa8.png",
+  "static/media/grip_1.png": "static/media/grip_1.7ab97588.png",
   "static/media/handguard_2.png": "static/media/handguard_2.dbbce3ec.png",
   "static/media/handguard_3.png": "static/media/handguard_3.645c4acd.png",
+  "static/media/handguard_4.png": "static/media/handguard_4.a122c20c.png",
   "static/media/lower_receiver_2.png": "static/media/lower_receiver_2.0ab33a9c.png",
-  "static/media/magazine_1.png": "static/media/magazine_1.32fd11b4.png",
-  "static/media/magazine_2.png": "static/media/magazine_2.505a3f47.png"
+  "static/media/magazine_1.png": "static/media/magazine_1.309af4bd.png",
+  "static/media/magazine_2.png": "static/media/magazine_2.505a3f47.png",
+  "static/media/stock_3.png": "static/media/stock_3.b165b5d5.png",
+  "static/media/stock_4.png": "static/media/stock_4.ee4d1c4c.png"
 }

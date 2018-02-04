@@ -7,6 +7,9 @@ import FR1 from '../../images/guns/strykev/frame/frame_1.png'
 // Slides
 import SL1 from '../../images/guns/strykev/slide/slide_1.png'
 
+// Recoil springs
+import RS1 from '../../images/guns/strykev/recoil_spring/recoil_spring_1.png'
+
 // Barrels
 import BAR1 from '../../images/guns/strykev/barrel/barrel_1.png'
 
@@ -40,49 +43,61 @@ const defaultProperties = {
     zIndex:   30
   },
 
+  recoil_spring: {
+    key:      "recoil_spring",
+    display:  "Recoil spring",
+    order:    4,
+    zIndex:   35
+  },
+
   magazine: {
     key:      "magazine",
     display:  "Magazine",
-    order:    4,
+    order:    5,
     zIndex:   20
   },
 
   grip: {
     key:      "grip",
     display:  "Grip panels",
-    order:    5,
+    order:    6,
     zIndex:   60
   },
 
   rear_sight: {
     key:      "rear_sight",
     display:  "Rear sight",
-    order:    6,
+    order:    7,
     zIndex:   70
   }
+
 }
 
 // Base snapping points offsets
 const baseSnap = {
 
   slide: {
-    top:  -32,
-    left: 27
+    bottom: 189,
+    left:   24
   },
 
   barrel: {
-    bottom: 212,
-    left:   200
+    bottom: 213,
+    left:   192
+  },
+
+  recoil_spring: {
+    bottom: 190
   },
 
   magazine: {
-    bottom: -10,
-    left:   13
+    bottom: -11,
+    left:   10
   },
 
   grip: {
-    bottom: 18,
-    left:   21
+    bottom: 17,
+    left:   18
   },
 
   rear_sight: {
@@ -105,7 +120,7 @@ export const strykev = {
       baseObject(defaultProperties.frame, {
         name:   "Steel frame",
         author: "Lularros",
-        width:  395,
+        width:  374,
         height: 216,
         image:  FR1,
         stats: {
@@ -120,8 +135,8 @@ export const strykev = {
       baseObject(defaultProperties.slide, {
         name:   "Steel slide",
         author: "Lularros",
-        width:  448,
-        height: 62,
+        width:  397,
+        height: 60,
         image:  SL1
       })
     ],
@@ -131,12 +146,24 @@ export const strykev = {
       baseObject(defaultProperties.barrel, {
         name:   "Light barrel",
         author: "Lularros",
-        width:  281,
-        height: 35,
+        width:  236,
+        height: 33,
         image:  BAR1,
         stats: {
           handling: 1
         }
+      })
+    ],
+
+    // Recoil springs
+    recoil_spring: [
+      baseObject(defaultProperties.recoil_spring, {
+        name:   "Standard spring",
+        author: "Lularros",
+        width:  101,
+        height: 55,
+        image:  RS1,
+        rsOffset: 8
       })
     ],
 
@@ -145,8 +172,8 @@ export const strykev = {
       baseObject(defaultProperties.magazine, {
         name:   "Standard magazine",
         author: "Lularros",
-        width:  186,
-        height: 248,
+        width:  183,
+        height: 254,
         image:  MAG1,
         stats: {
           capacity: 10
@@ -159,8 +186,8 @@ export const strykev = {
       baseObject(defaultProperties.grip, {
         name:   "Plastic grip panels",
         author: "Lularros",
-        width:  157,
-        height: 186,
+        width:  150,
+        height: 188,
         image:  GRIP1,
         stats: {
           handling: 1
